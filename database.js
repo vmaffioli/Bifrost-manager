@@ -10,4 +10,5 @@ const guildName = 'Nome da guilda'
 module.exports.func = function createProfile(){
   //create
 db.set(guildName, []).write()
+}
 

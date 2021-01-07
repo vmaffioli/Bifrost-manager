@@ -14,6 +14,10 @@ const characterInfos = {
   photo: "Imagem do Personagem"
 
 }
+const Discord = require("discord.js"); 
+
+exports.run = async (client, message, args) => {
+
 
 
   //create
@@ -29,4 +33,4 @@ db.get(guildName).push({
     character_photo: characterInfos["photo"]
   }).write()
 
-
+}

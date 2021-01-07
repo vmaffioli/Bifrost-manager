@@ -1,0 +1,12 @@
+{
+  "Nome da guilda": [
+    {
+      "player_name": "Nome do Jogador",
+      "character_name": "Nome do Personagem",
+      "character_job": "Profissão do Personagem",
+      "character_description": "Descrição do Personagem",
+      "character_lore": "História do Personagem",
+      "character_photo": "Imagem do Personagem"
+    }
+  ]
+}
