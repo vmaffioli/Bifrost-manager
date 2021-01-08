@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('profile_data.json')
@@ -7,8 +7,10 @@ const db = low(adapter)
 
 exports.run = async (client, message, args) => {
 
-  const guildName = 'Nome da guilda'
-  const playerName = 'Nome do Jogador'
+  let user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
+
+  const guildName = "BifrostGuardians";
+  const playerName = user.username;
   const characterInfos = {
     name: "Nome do Personagem",
     job: "Profissão do Personagem",
@@ -16,12 +18,12 @@ exports.run = async (client, message, args) => {
     lore: "História do Personagem",
     photo: "Imagem do Personagem"
 
-  }
+  };
 
 
 
   //create
-  db.set(guildName, []).write()
+  db.set(guildName, []).write();
 
   //post
   db.get(guildName).push({
@@ -31,6 +33,6 @@ exports.run = async (client, message, args) => {
     character_description: characterInfos["description"],
     character_lore: characterInfos["lore"],
     character_photo: characterInfos["photo"]
-  }).write()
+  }).write();
 
-}
+};

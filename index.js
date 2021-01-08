@@ -12,9 +12,9 @@ const Discord = require("discord.js"); //Conexão com a livraria Discord.js
 const client = new Discord.Client(); //Criação de um novo Client
 
 const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('profile-data.json')
-const db = low(adapter)
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('profile-data.json');
+const db = low(adapter);
 
 const config = require("./config.json"); //Pegando o prefixo do bot para respostas de comandos
 
