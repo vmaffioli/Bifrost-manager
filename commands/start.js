@@ -11,28 +11,51 @@ exports.run = async (client, message, args) => {
 
   const guildName = "BifrostGuardians";
   const playerName = user.username;
-  const characterInfos = {
-    name: "Nome do Personagem",
-    job: "Profissão do Personagem",
-    description: "Descrição do Personagem",
-    lore: "História do Personagem",
-    photo: "Imagem do Personagem"
+
+
+  //send initial messages
+   message.author.send("Bem vindo ao Assistente de criação para fichas de Personagens!");
+   await new Promise(r => setTimeout(r, 1000));
+
+
+  //wait for messages
+  const filter = m => m.author.id === message.author.id;
+  const msg_content = [
+    "Vamos começar?\nPor favor, me informe o nome do personagem:",
+    "Deixe-me ver... Qual é/será sua profissão?",
+    "Muito bem!\nAgora preciso saber um pouco sobre seu/sua personagem..\nMe conte um pouco sobre a personalidade, sonhos e comportamento dele(a):"
+  ];
+
+  var charInfo = [];
+  
+
+  function getInput(msg) {
+      message.author.send(msg)
+      .then(msg => msg.delete(10000))
+        .catch(err => {}) 
+    message.author.dmChannel.awaitMessages(filter, {
+      max: 1, 
+      time: 10000, 
+      errors: ['time']
+    }).then(async(collected) => { 
+      if (collected.first().content.toLowerCase() == 'cancel') { // 
+        message.author.send(":sob: The command has been cancelled.") 
+      } 
+      let captured_content = collected.first().content;
+      console.log(captured_content);
+      return captured_content
+
+    }).catch(() => {
+      message.author.send("You took too long!")
+    });
 
   };
 
 
+  let charName = getInput(msg_content[0]); 
 
-  //create
-  db.set(guildName, []).write();
 
-  //post
-  db.get(guildName).push({
-    player_name: playerName,
-    character_name: characterInfos["name"],
-    character_job: characterInfos["job"],
-    character_description: characterInfos["description"],
-    character_lore: characterInfos["lore"],
-    character_photo: characterInfos["photo"]
-  }).write();
+
+
 
 };

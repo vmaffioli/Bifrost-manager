@@ -1,14 +1,13 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync('profile_data.json')
+const adapter = new FileSync('./profile_data.json')
 const db = low(adapter)
 
-const guildName = 'Nome da guilda'
+const guildName = 'BifrostGuardians'
 
 
 module.exports.func = function createProfile(){
-  //create
-db.set(guildName, []).write()
+
 }
 

@@ -1,0 +1,14 @@
+  //post
+  db.get(guildName).push({
+    player_name: playerName,
+    character_name: charName,
+    character_job: characterInfos["job"],
+    character_description: characterInfos["description"],
+    character_lore: characterInfos["lore"],
+    character_photo: characterInfos["photo"]
+  }).write();
+
+
+
+    //create
+db.set(guildName, []).write()
