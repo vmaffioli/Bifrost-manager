@@ -26,33 +26,50 @@ exports.run = async (client, message, args) => {
     "Muito bem!\nAgora preciso saber um pouco sobre seu/sua personagem..\nMe conte um pouco sobre a personalidade, sonhos e comportamento dele(a):"
   ];
 
-  var charInfo = [];
+
+  let charName = "";
+  let charJob = "";
+  let charDesc = "";
+
   
 
-  function getInput(msg) {
+  function getInput(msg, t) {
       message.author.send(msg)
       .then(msg => msg.delete(10000))
         .catch(err => {}) 
+
     message.author.dmChannel.awaitMessages(filter, {
       max: 1, 
       time: 10000, 
       errors: ['time']
     }).then(async(collected) => { 
-      if (collected.first().content.toLowerCase() == 'cancel') { // 
+
+      if (collected.first().content.toLowerCase() == 'cancel') { 
         message.author.send(":sob: The command has been cancelled.") 
       } 
-      let captured_content = collected.first().content;
-      console.log(captured_content);
-      return captured_content
+
+      if (t == 0) {
+        charName = collected.first().content;
+        console.log(charName);
+      } else if (t == 1) {
+        charJob = collected.first().content;
+        console.log(charJob);
+      } else if (t == 2) {
+        charDesc = collected.first().content;
+        console.log(charDesc);
+      }
+
+      
 
     }).catch(() => {
       message.author.send("You took too long!")
     });
-
   };
 
-
-  let charName = getInput(msg_content[0]); 
+  getInput(msg_content[0], 0)
+    .then(getInput(msg_content[1], 1))
+    .then(getDesc(msg_content[2], 2));
+ 
 
 
 
