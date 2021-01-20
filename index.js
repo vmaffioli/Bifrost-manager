@@ -93,7 +93,7 @@ client.on('message', message => {
       const command = args.shift().toLowerCase();
 
       try {
-          const commandFile = require(`./commands/storage.js`)
+          const commandFile = require(`./commands/help.js`)
           commandFile.run(client, message, args, database);
       } catch (err) {
       console.error('Erro:' + err);
