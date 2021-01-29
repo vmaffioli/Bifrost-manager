@@ -7,7 +7,7 @@ exports.run = async (client, message, args, database) => {
 
     const filter = m => m.author.id === message.author.id;
 
-    message.author.send("Você gostaria de consultar o histórico de depósitos ou retiradas do inventário?")
+    message.author.send("```Digite 'depósitos' ou 'retiradas'.```\n\n:woman_technologist: **Você gostaria de consultar o histórico de depósitos ou retiradas do inventário?**")
     message.channel.awaitMessages(filter, {
         max: 1,
         time: 100000,
@@ -172,6 +172,8 @@ exports.run = async (client, message, args, database) => {
                 }
 
             })
+    } else {
+      message.author.send("Eu só consigo consultar depósitos ou retiradas, infelizmente não entendi o que você quer. Por favor tente novamente inserindo o comando storage@history")
     }
 
     })
