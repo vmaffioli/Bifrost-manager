@@ -48,7 +48,12 @@ client.on('message', message => {
      ||
      ((message.channel.type != "dm") && (message.content.toLowerCase() === config.prefix.toLowerCase() + "remove"))
      ||
-     ((message.channel.type != "dm") && (message.content.toLowerCase() === config.prefix.toLowerCase() + "check_global"))) 
+     ((message.channel.type != "dm") && (message.content.toLowerCase() === config.prefix.toLowerCase() + "withdrawals"))
+     ||
+     ((message.channel.type != "dm") && (message.content.toLowerCase() === config.prefix.toLowerCase() + "check_global"))
+      ||
+     ((message.channel.type === "dm") && (message.content.toLowerCase().includes(config.prefix.toLowerCase())))
+     ) 
      return;
 
     if ((message.channel.type === "dm") && 

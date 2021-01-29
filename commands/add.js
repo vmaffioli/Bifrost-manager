@@ -58,12 +58,12 @@ exports.run = async (client, message, args, database) => {
       nome.trim();
       database.ref(`Storage/${nome}`)
         .once('value').then(async function(snap) {
-           database.ref(`History/${protocol}`)
+           database.ref(`In/${protocol}`)
             .set({
               itens: `${itens_list}`,
               author: `${player_name}`,
               date: `${fdate}`,
-              type: `retirada`
+              protocol: `${protocol}`
             })
       })
 
@@ -72,31 +72,9 @@ exports.run = async (client, message, args, database) => {
 
 
 
-
-    database.ref(`History/${protocol}`)
-      .once('value').then(async function(snap) {
-          if (!snap.val() == null) {
-          database.ref(`History/${protocol}`)
-            .set({
-              itens: `${itens_list}`,
-              author: `${player_name}`,
-              date: `${fdate}`,
-              type: `depósito`
-            })
-        } else {
-          protocol = Math.floor(Math.random() * 9) + protocol 
-          database.ref(`History/${protocol}`)
-            .set({
-              itens: `${itens_list}`,
-              author: `${player_name}`,
-              date: `${fdate}`,
-              type: `depósito`
-
-            })
-        }
-      })
-
     message.author.send(":woman_technologist:   Prontinho!\nSua ficha foi enviada com sucesso e o inventário já foi atualizado!\n\nO protocolo do seu depósito é :\n" + protocol);
+
+
 
 
   }).catch(() => {

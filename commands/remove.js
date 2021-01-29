@@ -91,15 +91,15 @@ exports.run = async (client, message, args, database) => {
 
 
     });
-       database.ref(`History/${protocol}`)
+       database.ref(`Out/${protocol}`)
       .once('value').then(async function(snap) {
 
-          database.ref(`History/${protocol}`)
+          database.ref(`Out/${protocol}`)
             .set({
               itens: `${itens_list}`,
               author: `${player_name}`,
               date: `${fdate}`,
-              type: `retirada`
+              protocol: `${protocol}`
             })
       })
 
